@@ -1,0 +1,31 @@
+PROCEDURE DotProduct(v1, v2: ARRAY_OF_REAL; VAR ps: REAL);
+VAR
+   i: INTEGER;
+BEGIN
+   ps := 0; // Initialize ps to 0.
+
+   FOR i FROM 1 TO LENGTH(v1) DO
+      ps := ps + (v1[i] * v2[i]); // Calculate dot product.
+END;
+
+ALGORITHM DetermineOrthogonalVectors
+VAR
+   n, i, j: INTEGER;
+   v1, v2: ARRAY_OF_REAL;
+   ps: REAL;
+BEGIN
+   Read(n); // Read the number of vector pairs.
+
+   FOR i FROM 1 TO n DO
+   BEGIN
+      ReadArray(v1); // Read the first vector.
+      ReadArray(v2); // Read the second vector.
+
+      DotProduct(v1, v2, ps); // Calculate the dot product.
+
+      IF ps = 0 THEN
+         WriteLn('Vectors are orthogonal') // Print result if dot product is 0.
+      ELSE
+         WriteLn('Vectors are not orthogonal'); // Print result if dot product is not 0.
+   END;
+END;
